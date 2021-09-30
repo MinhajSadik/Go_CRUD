@@ -35,6 +35,7 @@ func getMongoDbCollection() (*mongo.Client, error) {
 }
 
 func GetMongoDbCollection(DbName string, CollectionName string) (*mongo.Collection, error) {
+
 	client, err := getMongoDbCollection()
 
 	if err != nil {
@@ -48,7 +49,6 @@ func GetMongoDbCollection(DbName string, CollectionName string) (*mongo.Collecti
 
 func InitCollections() bool {
 	var err error
-
 	SystemCollections.Student, err = GetMongoDbCollection("Demo", "student")
 	if err != nil {
 		return false
