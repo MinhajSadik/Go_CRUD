@@ -9,9 +9,7 @@ import (
 	"go.mongodb.org/mongo-driver/mongo/readpref"
 )
 
-// var dbURL string = "mongodb://localhost:27017/?readPreference=primary&appname=MongoDB%20Compass&directConnection=true&ssl=false"
-
-var dbURL string = "mongodb+srv://MinhajSadik:MongoDB@cluster0.4y50m.mongodb.net/test?authSource=admin&replicaSet=atlas-pxamu5-shard-0&readPreference=primary&appname=MongoDB%20Compass&ssl=true"
+var dbURL string = "mongodb://localhost:27017/?readPreference=primary&appname=MongoDB%20Compass&directConnection=true&ssl=false"
 
 var SystemCollections DemoCollections 
 
