@@ -15,6 +15,12 @@ func StudentNew(c *fiber.Ctx) error {
 	var self Models.Student
 	c.BodyParser(&self)
 
+	err:= self.Validate()
+	if err != nil {
+		c.Status(500)
+		return err
+	}
+
 	res, err:= collection.InsertOne(context.Background(), self)
 	
 	if err != nil {
