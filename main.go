@@ -20,5 +20,4 @@ func main() {
 	app := fiber.New()
 	app.Post("/student/new", Controllers.StudentNew)
 	app.Listen(":3000")
-
-} 
+}
