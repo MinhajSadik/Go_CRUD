@@ -55,10 +55,12 @@ func StudentGetAll(c *fiber.Ctx) error {
 	response, _ := json.Marshal(bson.M{
 		"results": results,
 	})
+
 	c.Set("Content-Type", "application/json")
 	c.Status(200).Send(response)
 
 	return nil
+
 }
 
 
@@ -68,7 +70,7 @@ func StudentModify(c *fiber.Ctx) error {
 	var self Models.Student
 	c.BodyParser(&self)
 
-	err:= self.Validate()
+	err := self.Validate()
 	if err != nil {
 		c.Status(500)
 		return err
