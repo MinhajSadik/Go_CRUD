@@ -39,7 +39,10 @@ func StudentGetAll(c *fiber.Ctx) error {
 
 	results:= []bson.M{}
 
-	cur, err := collection.Find(context.Background(), bson.M{})
+	var searchParams Models.StudentSearch
+	c.BodyParser(&searchParams)
+
+	cur, err := collection.Find(context.Background(), searchParams.GetBSONSearchObj())
 	if err != nil {
 		c.Status(500)
 		return err
