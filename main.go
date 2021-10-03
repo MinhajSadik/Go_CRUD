@@ -18,6 +18,11 @@ func main() {
 		return
 	}
 	app := fiber.New()
+
+
 	app.Post("/student/new", Controllers.StudentNew)
+	app.Get("/student/get_all", Controllers.StudentGetAll)
+
+
 	app.Listen(":3000")
 }

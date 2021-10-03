@@ -7,6 +7,7 @@ import (
 	"example.com/ajax/session/DBManager"
 	"example.com/ajax/session/Models"
 	"github.com/gofiber/fiber/v2"
+	"go.mongodb.org/mongo-driver/bson"
 )
 
 func StudentNew(c *fiber.Ctx) error {
@@ -32,3 +33,26 @@ func StudentNew(c *fiber.Ctx) error {
 
 	return nil
 } 
+
+func StudentGetAll(c *fiber.Ctx) error {
+	collection := DBManager.SystemCollections.Student
+
+	results:= []bson.M{}
+
+	cur, err := collection.Find(context.Background(), bson.M{})
+	if err != nil {
+		c.Status(500)
+		return err
+	}
+	defer cur.Close(context.Background())
+
+	cur.All(context.Background(), &results)
+
+	response, _ := json.Marshal(bson.M{
+		"results": results,
+	})
+	c.Set("Content-Type", "application/json")
+	c.Status(200).Send(response)
+
+	return nil
+}
