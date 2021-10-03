@@ -22,6 +22,7 @@ func main() {
 
 	app.Post("/student/new", Controllers.StudentNew)
 	app.Post("/student/get_all", Controllers.StudentGetAll)
+	app.Post("/student/modify", Controllers.StudentModify)
 
 
 	app.Listen(":3000")

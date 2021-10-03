@@ -21,6 +21,15 @@ func (obj Student) Validate() error {
 )
 }
 
+func (obj Student) GetBSONModifactionObj() bson.M{
+	self:= bson.M{
+		"name":obj.Name,
+		"age":obj.Age,
+		"phonenumber":obj.PhoneNumber,
+	}
+	return self
+}
+
 type StudentSearch struct {
 	Name string `json:"name"`
 	NameIsUsed bool `json:"nameisused"`
