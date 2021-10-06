@@ -18,7 +18,7 @@ func main() {
 		return
 	}
 	app := fiber.New()
-
+	
 
 	app.Post("/student/new", Controllers.StudentNew)
 	app.Post("/student/get_all", Controllers.StudentGetAll)

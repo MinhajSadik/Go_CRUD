@@ -43,6 +43,7 @@ func StudentGetAll(c *fiber.Ctx) error {
 	c.BodyParser(&searchParams)
 
 	cur, err := collection.Find(context.Background(), searchParams.GetBSONSearchObj())
+	
 	if err != nil {
 		c.Status(500)
 		return err
@@ -76,7 +77,7 @@ func StudentModify(c *fiber.Ctx) error {
 		return err
 	}
 	updateQuery:= bson.M{
-		"$set": self.GetBSONModifactionObj(),
+		"$set": self.GetBSONModifictionObj(),
 	}
 	_, err = collection.UpdateOne(context.Background(), bson.M{"_id": self.ID}, updateQuery)
 

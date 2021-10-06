@@ -21,7 +21,7 @@ func (obj Student) Validate() error {
 )
 }
 
-func (obj Student) GetBSONModifactionObj() bson.M{
+func (obj Student) GetBSONModifictionObj() bson.M{
 	self:= bson.M{
 		"name":obj.Name,
 		"age":obj.Age,
