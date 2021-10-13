@@ -3,10 +3,14 @@ package main
 import (
 	"fmt"
 
-	"example.com/ajax/session/Controllers"
 	"example.com/ajax/session/DBManager"
+	"example.com/ajax/session/Routes"
 	"github.com/gofiber/fiber/v2"
 )
+
+func SetupRoutes(app *fiber.App) {
+	Routes.StudentRoutes(app.Group("/student"))
+}
 
 func main() {
 	initState := DBManager.InitCollections()
@@ -19,9 +23,7 @@ func main() {
 	}
 	app := fiber.New()
 
-	app.Post("/student/new", Controllers.StudentNew)
-	app.Post("/student/get_all", Controllers.StudentGetAll)
-	app.Post("/student/modify", Controllers.StudentModify)
+	SetupRoutes(app)
 
 	app.Listen(":3000")
 }
