@@ -11,7 +11,6 @@ import (
 
 var dbURL string = "mongodb://localhost:27017/?readPreference=primary&appname=MongoDB%20Compass&directConnection=true&ssl=false"
 
-
 var SystemCollections DemoCollections
 
 type DemoCollections struct {
@@ -25,8 +24,8 @@ func getMongoDbCollection() (*mongo.Client, error) {
 	if err != nil {
 		log.Fatal(err)
 	}
-	err = client.Ping(context.Background(),  readpref.Primary())
-	
+	err = client.Ping(context.Background(), readpref.Primary())
+
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -46,7 +45,6 @@ func GetMongoDbCollection(DbName string, CollectionName string) (*mongo.Collecti
 
 	return collection, nil
 }
-
 
 func InitCollections() bool {
 	var err error

@@ -13,17 +13,15 @@ func main() {
 
 	if initState {
 		fmt.Println("[OK]")
-	}else{
+	} else {
 		fmt.Println("[FAIL]")
 		return
 	}
 	app := fiber.New()
-	
 
 	app.Post("/student/new", Controllers.StudentNew)
 	app.Post("/student/get_all", Controllers.StudentGetAll)
 	app.Post("/student/modify", Controllers.StudentModify)
-
 
 	app.Listen(":3000")
 }

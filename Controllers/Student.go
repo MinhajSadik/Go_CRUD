@@ -16,14 +16,14 @@ func StudentNew(c *fiber.Ctx) error {
 	var self Models.Student
 	c.BodyParser(&self)
 
-	err:= self.Validate()
+	err := self.Validate()
 	if err != nil {
 		c.Status(500)
 		return err
 	}
 
-	res, err:= collection.InsertOne(context.Background(), self)
-	
+	res, err := collection.InsertOne(context.Background(), self)
+
 	if err != nil {
 		c.Status(500)
 		return err
@@ -32,18 +32,18 @@ func StudentNew(c *fiber.Ctx) error {
 	c.Status(200).Send(response)
 
 	return nil
-} 
+}
 
 func StudentGetAll(c *fiber.Ctx) error {
 	collection := DBManager.SystemCollections.Student
 
-	results:= []bson.M{}
+	results := []bson.M{}
 
 	var searchParams Models.StudentSearch
 	c.BodyParser(&searchParams)
 
 	cur, err := collection.Find(context.Background(), searchParams.GetBSONSearchObj())
-	
+
 	if err != nil {
 		c.Status(500)
 		return err
@@ -64,7 +64,6 @@ func StudentGetAll(c *fiber.Ctx) error {
 
 }
 
-
 func StudentModify(c *fiber.Ctx) error {
 	collection := DBManager.SystemCollections.Student
 
@@ -76,7 +75,7 @@ func StudentModify(c *fiber.Ctx) error {
 		c.Status(500)
 		return err
 	}
-	updateQuery:= bson.M{
+	updateQuery := bson.M{
 		"$set": self.GetBSONModifictionObj(),
 	}
 	_, err = collection.UpdateOne(context.Background(), bson.M{"_id": self.ID}, updateQuery)
@@ -84,7 +83,7 @@ func StudentModify(c *fiber.Ctx) error {
 	if err != nil {
 		c.Status(500)
 		return err
-	}else{
+	} else {
 		c.Status(200)
 	}
 
