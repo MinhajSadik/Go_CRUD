@@ -3,14 +3,17 @@ package DBManager
 import (
 	"context"
 	"log"
+	"os"
 
+	"github.com/joho/godotenv"
 	"go.mongodb.org/mongo-driver/mongo"
 	"go.mongodb.org/mongo-driver/mongo/options"
 	"go.mongodb.org/mongo-driver/mongo/readpref"
 )
 
-var dbURL string = "mongodb://localhost:27017/?readPreference=primary&appname=MongoDB%20Compass&directConnection=true&ssl=false"
-
+// var dbURL string = "mongodb://localhost:27017/?readPreference=primary&appname=MongoDB%20Compass&directConnection=true&ssl=false"
+var configErr = godotenv.Load()
+var dbURL string = os.Getenv("DB_SOURCE_URL")
 var SystemCollections DemoCollections
 
 type DemoCollections struct {
@@ -47,11 +50,12 @@ func GetMongoDbCollection(DbName string, CollectionName string) (*mongo.Collecti
 }
 
 func InitCollections() bool {
+	if configErr != nil {
+		return false
+	}
+
 	var err error
 	SystemCollections.Student, err = GetMongoDbCollection("Demo", "student")
-	if err != nil {
-		return false
 
-	}
 	return err == nil
 }
