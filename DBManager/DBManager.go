@@ -55,7 +55,7 @@ func InitCollections() bool {
 	}
 
 	var err error
-	SystemCollections.Student, err = GetMongoDbCollection("Demo", "student")
+	SystemCollections.Student, err = GetMongoDbCollection("GO_CRUD", "student")
 
 	return err == nil
 }

@@ -12,6 +12,7 @@ import (
 
 func StudentNew(c *fiber.Ctx) error {
 	collection := DBManager.SystemCollections.Student
+	
 
 	var self Models.Student
 	c.BodyParser(&self)
