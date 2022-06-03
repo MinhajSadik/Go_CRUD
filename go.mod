@@ -8,7 +8,11 @@ require (
 	go.mongodb.org/mongo-driver v1.7.3
 )
 
-require github.com/asaskevich/govalidator v0.0.0-20210307081110-f21760c49a8d // indirect
+require (
+	github.com/asaskevich/govalidator v0.0.0-20210307081110-f21760c49a8d // indirect
+	github.com/go-stack/stack v1.8.0 // indirect
+	github.com/youmark/pkcs8 v0.0.0-20181117223130-1be2e3e5546d // indirect
+)
 
 require (
 	github.com/andybalholm/brotli v1.0.3 // indirect
